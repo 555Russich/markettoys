@@ -235,7 +235,8 @@ async def get_page_data(s: ClientSession, url: str) -> dict:
         for k, v in data.items():
             if v is ...:
                 data[k] = '-'
-
+            elif k == 'Описание':
+                data[k] = data[k].replace('\n', '<br>')
         return data
     except Exception:
         logging.error(f'URL={url}\n')
